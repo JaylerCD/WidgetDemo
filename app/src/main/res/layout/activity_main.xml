@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <com.jayler.widget.widget.NumberProgressBar
+        android:id="@+id/numberbar1"
+        android:layout_width="wrap_content"
+        android:padding="20dp"
+        app:progress_current="0"
+        android:layout_height="wrap_content" />
+
+
+    <com.jayler.widget.widget.AliProgressBar
+        android:id="@+id/AliProgressBar"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:padding="10dp"/>
+
+    <com.jayler.widget.widget.SearchView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"/>
+
+
+
+    <com.jayler.widget.widget.SlideTextView
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="雷锋精神龙卷风楼上的积分是龙卷风零售价方式令肌肤理论上讲反倒是龙卷风酸辣粉军绿色减肥舒服多了时间飞逝来了司法解释冷风机四六级方式令肌肤"/>
+
+
+    <com.jayler.widget.widget.refresh.RefreshableView
+        android:id="@+id/refreshable_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone">
+
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+        </ListView>
+    </com.jayler.widget.widget.refresh.RefreshableView>
+
+    <com.jayler.widget.widget.LivePublishLinkProgress
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="29dp"/>
+
+
+</LinearLayout>
