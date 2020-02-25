@@ -38,23 +38,10 @@ public class LivePublishLinkProgress extends View {
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mTextPaint.setTextSize(DensityUtils.sp2px(getContext(), 11));
         mTextPaint.setColor(Color.parseColor("#ffffff"));
-
-        mReachedBarPaint = new Paint();
-        mReachedBarPaint.setAntiAlias(true);
-        mReachedBarPaint.setDither(true);
-        mReachedBarPaint.setStyle(Paint.Style.FILL);
-
-        mUnReachedBarPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mUnReachedBarPaint.setStrokeCap(Paint.Cap.ROUND);
+        mReachedBarPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mUnReachedBarPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     }
 
-    /**
-     * 修改G币PK进度条
-     *
-     * @param leftCurrency
-     * @param rightCurrency
-     */
     public void updateCurrency(int leftCurrency, int rightCurrency) {
         this.mLeftCurrency = leftCurrency;
         this.mRightCurrency = rightCurrency;
@@ -72,6 +59,7 @@ public class LivePublishLinkProgress extends View {
         setLayerType(LAYER_TYPE_SOFTWARE, null);
         float height = getHeight() - getPaddingTop() - getPaddingBottom();
         float width = getWidth() - getPaddingLeft() - getPaddingRight();
+        float radius = (float) Math.floor(height / 2d); // fix float四舍五入精度丢失问题
 
         LinearGradient reachedBarGradient = new LinearGradient(width, height, 0, 0,
                 new int[]{Color.parseColor("#FF4B88"), Color.parseColor("#EB0057")}, null,
@@ -91,30 +79,28 @@ public class LivePublishLinkProgress extends View {
 
         RectF oval2 = new RectF(getPaddingLeft(), getPaddingTop(), height + getPaddingLeft(), height + getPaddingTop());
         canvas.drawArc(oval2, 90, 180, false, mUnReachedBarPaint);
-        RectF oval3 = new RectF(height / 2 + getPaddingLeft(), getPaddingTop(), width + getPaddingLeft() - height / 2, height + getPaddingTop());
+        RectF oval3 = new RectF(radius + getPaddingLeft(), getPaddingTop(), width + getPaddingLeft() - radius, height + getPaddingTop());
         canvas.drawRect(oval3, mUnReachedBarPaint);
         RectF oval4 = new RectF(width + getPaddingLeft() - height, getPaddingTop(), width + getPaddingLeft(), height + getPaddingTop());
         canvas.drawArc(oval4, 270, 180, false, mUnReachedBarPaint);
 
-
-        if (reachedWidth <= height / 2) {
+        if (reachedWidth <= radius) {
             RectF oval = new RectF(getPaddingLeft(), getPaddingTop(), height + getPaddingLeft(), height + getPaddingTop());
-            float angle = (float) Math.toDegrees(Math.acos(((height / 2d - reachedWidth) / (height / 2d))));
+            float angle = (float) Math.toDegrees(Math.acos(((radius - reachedWidth) / radius)));
             canvas.drawArc(oval, 180 - angle, 2 * angle, false, mReachedBarPaint);
-        } else if (reachedWidth >= width - height / 2d) {
+        } else if (reachedWidth >= width - radius) {
             RectF oval5 = new RectF(getPaddingLeft(), getPaddingTop(), height + getPaddingLeft(), height + getPaddingTop());
             canvas.drawArc(oval5, 90, 180, false, mReachedBarPaint);
-            RectF oval6 = new RectF((float) (height / 2d) + getPaddingLeft(), getPaddingTop(), width + getPaddingLeft() - height / 2, height + getPaddingTop());
+            RectF oval6 = new RectF(radius + getPaddingLeft(), getPaddingTop(), width + getPaddingLeft() - radius, height + getPaddingTop());
             canvas.drawRect(oval6, mReachedBarPaint);
-            float angle = (float) Math.toDegrees(Math.acos(((height / 2d - (width - reachedWidth)) / (height / 2d))));
+            float angle = (float) Math.toDegrees(Math.acos(((radius - (width - reachedWidth)) / radius)));
             RectF oval7 = new RectF(width + getPaddingLeft() - height, getPaddingTop(), width + getPaddingLeft(), height + getPaddingTop());
-            canvas.drawArc(oval7, 0 + angle, 360 - (2 * angle), false, mReachedBarPaint);
-        } else if (reachedWidth < width - height / 2d && reachedWidth > height / 2) {
+            canvas.drawArc(oval7, angle, 360 - (2 * angle), false, mReachedBarPaint);
+        } else if (reachedWidth < width - radius && reachedWidth > radius) {
             RectF oval5 = new RectF(getPaddingLeft(), getPaddingTop(), height + getPaddingLeft(), height + getPaddingTop());
             canvas.drawArc(oval5, 90, 180, false, mReachedBarPaint);
-            RectF oval6 = new RectF(height / 2 + getPaddingLeft(), getPaddingTop(), reachedWidth + getPaddingLeft(), height + getPaddingTop());
+            RectF oval6 = new RectF(radius + getPaddingLeft(), getPaddingTop(), reachedWidth + getPaddingLeft(), height + getPaddingTop());
             canvas.drawRect(oval6, mReachedBarPaint);
-
         }
 
         //绘制文字
