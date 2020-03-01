@@ -1,8 +1,8 @@
-package com.jayler.widget;
+package com.jayler.widget.uitls;
 
 import android.content.Context;
 
-public class DensityUtils {
+public class DensityUtil {
     public static float sp2px(Context context, float sp) {
         final float scale = context.getResources().getDisplayMetrics().scaledDensity;
         return sp * scale;

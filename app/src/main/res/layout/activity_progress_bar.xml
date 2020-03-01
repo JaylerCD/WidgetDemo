@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.jayler.widget.widget.NumberProgressBar
+        android:id="@+id/numberbar1"
+        android:layout_width="wrap_content"
+        android:padding="20dp"
+        app:progress_current="0"
+        android:layout_height="wrap_content" />
+
+
+    <com.jayler.widget.widget.AliProgressBar
+        android:id="@+id/AliProgressBar"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:padding="10dp"/>
+
+    <com.jayler.widget.widget.LivePublishLinkProgress
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
+        android:layout_margin="10dp"/>
+
+</LinearLayout>

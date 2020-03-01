@@ -10,7 +10,7 @@ import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.jayler.widget.DensityUtils;
+import com.jayler.widget.uitls.DensityUtil;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,7 +36,7 @@ public class LivePublishLinkProgress extends View {
 
     private void init() {
         mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mTextPaint.setTextSize(DensityUtils.sp2px(getContext(), 11));
+        mTextPaint.setTextSize(DensityUtil.sp2px(getContext(), 11));
         mTextPaint.setColor(Color.parseColor("#ffffff"));
         mReachedBarPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mUnReachedBarPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -108,7 +108,7 @@ public class LivePublishLinkProgress extends View {
         Paint.FontMetricsInt fontMetrics = mTextPaint.getFontMetricsInt();
         float baseline = mBackGroundRect.top + (mBackGroundRect.bottom - mBackGroundRect.top - fontMetrics.bottom + fontMetrics.top) / 2 - fontMetrics.top;
         float textWidth = mTextPaint.measureText(String.format("对方 %1dG币", (int) mRightCurrency));
-        canvas.drawText(String.format("我方 %1dG币", (int) mLeftCurrency), getPaddingLeft() + DensityUtils.dp2px(getContext(), 15), baseline, mTextPaint);
-        canvas.drawText(String.format("对方 %1dG币", (int) mRightCurrency), getPaddingLeft() + width - DensityUtils.dp2px(getContext(), 15) - textWidth, baseline, mTextPaint);
+        canvas.drawText(String.format("我方 %1dG币", (int) mLeftCurrency), getPaddingLeft() + DensityUtil.dp2px(getContext(), 15), baseline, mTextPaint);
+        canvas.drawText(String.format("对方 %1dG币", (int) mRightCurrency), getPaddingLeft() + width - DensityUtil.dp2px(getContext(), 15) - textWidth, baseline, mTextPaint);
     }
 }

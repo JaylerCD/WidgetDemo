@@ -3,8 +3,6 @@ package com.jayler.widget.widget;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -39,7 +37,7 @@ public class SlideTextView extends TextView{
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        setMeasuredDimension(2000, 300);
+        setMeasuredDimension(2000, heightMeasureSpec);
     }
 
     @Override
